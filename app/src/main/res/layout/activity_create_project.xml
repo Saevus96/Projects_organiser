@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_app"
+    tools:context=".useractivities.CreateProjectActivity"
+    android:id="@+id/relativeLay">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <include layout="@layout/toolbar_layout"></include>
+    </android.support.design.widget.AppBarLayout>
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/appBarLayout"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/ic_add"
+        android:id="@+id/img"/>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/img"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/projectNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/project_name"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/projectDescriptionET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/project_description"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/projectOrganisationET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/project_organisation"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/projectCategorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/MySpinnerLook"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/projectCustomersET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/specify_customers"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:background="@drawable/button_shape"
+            android:id="@+id/addProjectButton"
+            android:text="@string/add_project"/>
+    </LinearLayout>
+
+</RelativeLayout>

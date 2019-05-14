@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">RegistrationProject</string>
+    <string name="terms"> <u>Terms</u>.</string>
+    <string name="app_description">Create projects, create project groups,\n
+    join existing groups, gain experience,\n
+    get a job, make new friends\n
+    and a lot more.</string>
+    <string name="app_sign_up">Sign up to be able to use the application.</string>
+    <string name="app_sign_in">If you have an account, and you want use application, SIGN IN!</string>
+    <string name="click_here_to_sign_up">Click here to SIGN UP!</string>
+    <string name="click_here_to_sign_in">Click here to SIGN IN!</string>
+    <string name="click_here_to_show_existing_projects">Click here to show existing projects</string>
+    <string name="sign_in">SIGN IN!</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="join_us">JOIN US!</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="sign_up">SIGN UP!</string>
+    <string name="sign_out">SIGN OUT!</string>
+    <string name="add_new_project">Add new project</string>
+    <string name="create_new_project">Create new project</string>
+    <string name="fill_in_your_details">Fill in your details</string>
+    <string name="check_your_groups">Check your groups</string>
+    <string name="check_your_applications">Check your applications</string>
+    <string name="manage_your_projects">Manage your projects</string>
+    <string name="search_projects">Search projects</string>
+    <string name="add_project">Add project</string>
+    <string name="specify_customers">Specify customers</string>
+    <string name="project_organisation">Project organisation</string>
+    <string name="project_name">Project name</string>
+    <string name="project_descrition">Project descrition</string>
+    <string name="project_description">Project description</string>
+    <string name="manage_your_groups">Manage your groups</string>
+    <string name="add_group">ADD GROUP</string>
+    <string name="group_specialities">Group specialities</string>
+    <string name="check_your_details">Check your details</string>
+    <string name="first_name">First name:</string>
+    <string name="database_first_name">database first name</string>
+    <string name="last_name">Last name: </string>
+    <string name="database_last_name">database last name</string>
+    <string name="database_phone">database Phone</string>
+    <string name="phone">Phone:</string>
+    <string name="edit_text">EDIT TEXT</string>
+    <string name="project_name_semi">Project Name:</string>
+    <string name="project_category">Project category</string>
+    <string name="project_category_sem">Project category:</string>
+    <string name="project_description_sem">Project description:</string>
+    <string name="project_organisation_sem">Project organisation:</string>
+    <string name="project_customers">Project customers</string>
+    <string name="project_customers_sem">Project customers:</string>
+    <string name="project_admin_sem">Project Admin:</string>
+    <string name="project_admin">Project admin</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_date_end">Task date end</string>
+    <string name="task_date_start">Task date start</string>
+
+
+</resources>
