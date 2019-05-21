@@ -41,19 +41,26 @@
     <string name="database_phone">database Phone</string>
     <string name="phone">Phone:</string>
     <string name="edit_text">EDIT TEXT</string>
-    <string name="project_name_semi">Project Name:</string>
+    <string name="project_name_semi">Project name:</string>
     <string name="project_category">Project category</string>
     <string name="project_category_sem">Project category:</string>
     <string name="project_description_sem">Project description:</string>
     <string name="project_organisation_sem">Project organisation:</string>
     <string name="project_customers">Project customers</string>
     <string name="project_customers_sem">Project customers:</string>
-    <string name="project_admin_sem">Project Admin:</string>
+    <string name="project_admin_sem">Project admin:</string>
     <string name="project_admin">Project admin</string>
     <string name="task_name">Task Name</string>
     <string name="task_description">Task Description</string>
-    <string name="task_date_end">Task date end</string>
-    <string name="task_date_start">Task date start</string>
-
-
+    <string name="task_date_end">Task date end dd-mm-yyyy</string>
+    <string name="task_date_start">Task date start dd-mm-yyyy</string>
+    <string name="add_group_to_project">Add group to project</string>
+    <string name="cancel">cancel</string>
+    <string name="task_name_sem">Task name:</string>
+    <string name="task_start">Task start:</string>
+    <string name="task_end">Task end:</string>
+    <string name="task_group">Task group:</string>
+    <string name="task_group_s">Task group</string>
+    <string name="task_date_start_sem">Task date start:</string>
+    <string name="task_date_end_sem">Task date end:</string>
 </resources>

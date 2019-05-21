@@ -154,7 +154,7 @@ public class ManageGroupActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()== android.R.id.home){
             startActivity(new Intent(this, MainMenuActivity.class));
-            finish();
+            this.finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -162,7 +162,7 @@ public class ManageGroupActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, MainMenuActivity.class));
-        finish();
+        this.finish();
     }
 
 }

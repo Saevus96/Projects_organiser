@@ -29,8 +29,8 @@
         <activity
             android:name=".useractivities.CreateGroupActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:parentActivityName=".MainMenuActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainMenuActivity"/>
         <activity
             android:name=".useractivities.ManageProjectsActivity"
             android:configChanges="keyboardHidden|orientation"

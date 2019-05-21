@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_app">
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
@@ -18,25 +17,34 @@
         app:contentInsetRight="0dp"
         app:contentInsetStart="0dp">
 
-        <include layout="@layout/toolbar_layout"></include>
+        <include layout="@layout/toolbar_layout"
+            android:layout_marginLeft="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></include>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/dots"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal"></LinearLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/menuViewPager"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/bar"
-        android:layout_above="@id/dots"
-        >
+        android:background="@drawable/background_app">
 
-    </android.support.v4.view.ViewPager>
+        <LinearLayout
+            android:id="@+id/dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"></LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/menuViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/dots"
+            android:layout_below="@id/bar">
+
+        </android.support.v4.view.ViewPager>
+    </RelativeLayout>
 </RelativeLayout>

@@ -4,7 +4,6 @@
     android:id="@+id/relativeLay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_app"
     tools:context=".useractivities.CreateProjectActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -22,7 +21,11 @@
 
         <include layout="@layout/toolbar_layout"></include>
     </android.support.design.widget.AppBarLayout>
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout"
+        android:background="@drawable/background_app">
     <ImageView
         android:id="@+id/img"
         android:layout_width="120dp"
@@ -80,5 +83,5 @@
             android:text="@string/add_group"
             android:textSize="20sp" />
     </LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

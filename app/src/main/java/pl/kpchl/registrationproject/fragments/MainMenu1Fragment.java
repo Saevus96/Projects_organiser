@@ -44,6 +44,9 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
     public int groupCounter = 0;
     public int projectCounter = 0;
 
+    public static MainMenu1Fragment newInstance(){
+        return new MainMenu1Fragment();
+    }
 
     @Nullable
     @Override
@@ -55,7 +58,6 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
         checkProjects();
         activeButtons();
         animations();
-
 
         return view;
     }
@@ -209,12 +211,11 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
                 break;
             case R.id.createNewGroup:
                 startActivity(new Intent(getActivity(), CreateGroupActivity.class));
-                getActivity().finish();
-
                 break;
             case R.id.manageYourGroups:
                 if(groupCounter>0){
                     startActivity(new Intent(getActivity(), ManageGroupActivity.class));
+                    getActivity().finish();
                 }else{
                     createToast("You don't have any active group. Create group first!",R.drawable.ic_alert);
                 }

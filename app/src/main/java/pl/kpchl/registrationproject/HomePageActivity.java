@@ -69,7 +69,7 @@ public class HomePageActivity extends AppCompatActivity {
     private void components() {
         viewPagerRegLog = findViewById(R.id.viewPagerRegLog);
         linearLayout = findViewById(R.id.dotsRegLog);
-        toolbar = findViewById(R.id.customActionBar);
+        toolbar = findViewById(R.id.appBar);
     }
 
 

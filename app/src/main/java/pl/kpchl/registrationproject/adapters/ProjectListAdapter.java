@@ -137,7 +137,7 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         projectListViewHolder.projectInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                sendToDialog.clear();
                 sendToDialog.add(0, object.getProjectName());
                 sendToDialog.add(1, object.getProjectDescription());
                 sendToDialog.add(2, object.getProjectOrganisation());
@@ -163,5 +163,11 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     @Override
     public int getItemCount() {
         return mProjectList.size();
+    }
+
+    public void removeItem(int position) {
+        mProjectId.remove(position);
+        mProjectList.remove(position);
+        notifyItemRemoved(position);
     }
 }

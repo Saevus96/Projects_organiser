@@ -50,6 +50,7 @@ public class ProjectInfoDialog extends AppCompatDialogFragment implements View.O
         projectCategory = v.findViewById(R.id.categoryText);
         projectOrganisation = v.findViewById(R.id.organisationText);
         cancelButton = v.findViewById(R.id.buttonCancel);
+        cancelButton.setOnClickListener(this);
     }
 
     private void setInformations() {

@@ -69,11 +69,12 @@ public class ManageProjectsActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
                 final int position = viewHolder.getAdapterPosition();
-                projectArray.remove(position);
-                projectListAdapter.notifyDataSetChanged();
-                projectListAdapter.notifyDataSetChanged();
+
+
                 mDatabase.child("projects").child(projectId.get(position)).removeValue();
-                projectId.remove(position);
+                projectListAdapter.removeItem(position);
+                projectListAdapter.notifyDataSetChanged();
+
                 if(projectId.size()==0){
                     startActivity(new Intent(ManageProjectsActivity.this, MainMenuActivity.class));
                     finish();

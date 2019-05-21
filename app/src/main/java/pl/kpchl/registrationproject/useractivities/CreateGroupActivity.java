@@ -1,11 +1,9 @@
 package pl.kpchl.registrationproject.useractivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import pl.kpchl.registrationproject.MainMenuActivity;
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.models.GroupClass;
 
@@ -118,7 +115,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             String id = mDatabase.push().getKey();
             //mDatabase.child("projects").child(id).setValue(new ProjectClass(name, "Category" + spinnerActivePosition, description, getUser(), organisation, customers));
             mDatabase.child("teams").child(id).setValue(new GroupClass(name, getUser(), speciality));
-            startActivity(new Intent(this, MainMenuActivity.class));
             finish();
         }
     }
@@ -132,7 +128,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             startActivity(new Intent(this, MainMenuActivity.class));
@@ -146,6 +142,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         super.onBackPressed();
         startActivity(new Intent(this, MainMenuActivity.class));
         finish();
-    }
+    }*/
 
 }

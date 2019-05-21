@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.view.WindowManager;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +31,7 @@ public class ProjectManagmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_managment);
+        deleteInfoBar();
         components();
         setProjectId();
         setupDatabase();
@@ -52,6 +53,11 @@ public class ProjectManagmentActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setText("PROJECT INFORMATIONS");
     }
 
+    //delete information bar
+    private void deleteInfoBar() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
 
     // Function to create viewPager
     private void setupViewPager() {
@@ -69,7 +75,7 @@ public class ProjectManagmentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 projectName = dataSnapshot.child("projectName").getValue(String.class);
-               // Toast.makeText(ProjectManagmentActivity.this, projectName, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ProjectManagmentActivity.this, projectName, Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle(projectName);
             }
 
@@ -88,6 +94,7 @@ public class ProjectManagmentActivity extends AppCompatActivity {
     private void setupDatabase() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
+
     private void components() {
         toolbar = findViewById(R.id.appBar);
         tabLayout = findViewById(R.id.tabLayout);

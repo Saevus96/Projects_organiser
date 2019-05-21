@@ -58,20 +58,12 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
             super(itemView);
             groupName = itemView.findViewById(R.id.groupNameTX);
             groupSpeciality = itemView.findViewById(R.id.groupSpecialityTX);
-
         }
     }
+
     public void removeItem(int position) {
         mGroupList.remove(position);
         notifyItemRemoved(position);
     }
 
-    public void restoreItem(GroupClass item, int position) {
-        mGroupList.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public ArrayList<GroupClass> getData() {
-        return mGroupList;
-    }
 }
