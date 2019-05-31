@@ -1,44 +1,24 @@
 package pl.kpchl.registrationproject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import pl.kpchl.registrationproject.adapters.ViewPagerAdapter;
-import pl.kpchl.registrationproject.fragments.DescriptionFragment;
-import pl.kpchl.registrationproject.fragments.LoginFragment;
 import pl.kpchl.registrationproject.fragments.MainMenu1Fragment;
 import pl.kpchl.registrationproject.fragments.MainMenu2Fragment;
-import pl.kpchl.registrationproject.fragments.RegisterFragment;
-import pl.kpchl.registrationproject.useractivities.CreateProjectActivity;
-import pl.kpchl.registrationproject.useractivities.ManageProjectsActivity;
 
-public class MainMenuActivity extends AppCompatActivity { //implements View.OnClickListener {
-
-    private CardView createNewProject;
-    private CardView manageYourProjects;
-    private CardView searchProjects;
-    private CardView checkYourGroups;
-    private CardView checkYourApplications;
-    private CardView fillYourDetails;
-    private CardView signOutButton;
-
+public class MainMenuActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ViewPager menuViewPager;
     private LinearLayout linearLayout;
     private TextView[] dots;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +29,13 @@ public class MainMenuActivity extends AppCompatActivity { //implements View.OnCl
         addDotsIndicator(0);
         setupViewPager(menuViewPager);
     }
+
     //delete information bar
-    private void deleteInfoBar(){
-        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN );
+    private void deleteInfoBar() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
     //setup ActionBar
     private void setupActionBar() {
         setSupportActionBar(toolbar);
@@ -91,6 +73,7 @@ public class MainMenuActivity extends AppCompatActivity { //implements View.OnCl
         menuViewPager = findViewById(R.id.menuViewPager);
         linearLayout = findViewById(R.id.dots);
         menuViewPager.addOnPageChangeListener(viewListener);
+
 
     }
 

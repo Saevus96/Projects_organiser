@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ import pl.kpchl.registrationproject.MainMenuActivity;
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.adapters.ProjectListAdapter;
 import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallback;
+import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallbackRight;
 import pl.kpchl.registrationproject.models.ProjectClass;
 
 public class ManageProjectsActivity extends AppCompatActivity {
@@ -79,11 +82,40 @@ public class ManageProjectsActivity extends AppCompatActivity {
                     startActivity(new Intent(ManageProjectsActivity.this, MainMenuActivity.class));
                     finish();
                 }
+                else{
+                    View contextView = findViewById(R.id.coordinatorLayout);
+                    Snackbar.make(contextView, "Project deleted successful",Snackbar.LENGTH_SHORT).show();
+                }
             }
         };
 
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        SwipeToDeleteCallbackRight swipeToDeleteCallbackRight = new SwipeToDeleteCallbackRight(this) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+                final int position = viewHolder.getAdapterPosition();
+
+
+                mDatabase.child("projects").child(projectId.get(position)).removeValue();
+                projectListAdapter.removeItem(position);
+                projectListAdapter.notifyDataSetChanged();
+
+                if(projectId.size()==0){
+                    startActivity(new Intent(ManageProjectsActivity.this, MainMenuActivity.class));
+                    finish();
+                }
+                else{
+                    View contextView = findViewById(R.id.coordinatorLayout);
+                    Snackbar.make(contextView, "Group deleted successful",Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchhelper2 = new ItemTouchHelper(swipeToDeleteCallbackRight);
+        itemTouchhelper2.attachToRecyclerView(recyclerView);
     }
 
 

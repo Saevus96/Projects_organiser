@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -57,11 +60,15 @@ public class AddGroupDialog extends AppCompatDialogFragment implements View.OnCl
     }
 
     private void addToDataBase() {
-        mDatabase.child("projects")
-                .child(ProjectManagmentActivity.projectId)
-                .child("projectGroups")
-                .child(groupListId.get(groupSpinner.getSelectedItemPosition()))
-                .setValue("1");
+        if(!groupListId.isEmpty()) {
+            mDatabase.child("projects")
+                    .child(ProjectManagmentActivity.projectId)
+                    .child("projectGroups")
+                    .child(groupListId.get(groupSpinner.getSelectedItemPosition()))
+                    .setValue("1");
+        }else{
+            createToast("You add all yours groups", R.drawable.ic_alert);
+        }
     }
 
     //get logged user
@@ -198,5 +205,23 @@ public class AddGroupDialog extends AppCompatDialogFragment implements View.OnCl
                 getDialog().dismiss();
                 break;
         }
+    }
+
+    //create custom toast
+    public void createToast(String text, int image) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        ImageView toastImage = layout.findViewById(R.id.toastImage);
+        toastImage.setImageResource(image);
+
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(text);
+
+        Toast toast = new Toast(getActivity());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

@@ -125,7 +125,6 @@ public class RegisterFragmentIn extends BaseFragment implements View.OnClickList
     }
     //after sign up push user to user panel activity
     private void updateUI() {
-        Toast.makeText(getActivity(), "HELLO", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getActivity(), MainMenuActivity.class));
         getActivity().finish();
     }

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import pl.kpchl.registrationproject.MainMenuActivity;
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.adapters.GroupListAdapter;
 import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallback;
+import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallbackRight;
 import pl.kpchl.registrationproject.models.GroupClass;
 
 public class ManageGroupActivity extends AppCompatActivity {
@@ -71,10 +74,35 @@ public class ManageGroupActivity extends AppCompatActivity {
                     startActivity(new Intent(ManageGroupActivity.this, MainMenuActivity.class));
                     finish();
                 }
+                else{
+                    View contextView = findViewById(R.id.coordinatorLayout);
+                    Snackbar.make(contextView, "Group deleted successful",Snackbar.LENGTH_SHORT).show();
+                }
             }
         };
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
+
+        SwipeToDeleteCallbackRight swipeToDeleteCallbackRight = new SwipeToDeleteCallbackRight(this) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+                final int position = viewHolder.getAdapterPosition();
+                groupListAdapter.removeItem(position);
+                groupListAdapter.notifyDataSetChanged();
+                mDatabase.child("teams").child(groupId.get(position)).removeValue();
+                groupId.remove(position);
+                if(groupId.size()==0){
+                    startActivity(new Intent(ManageGroupActivity.this, MainMenuActivity.class));
+                    finish();
+                }else{
+                    View contextView = findViewById(R.id.coordinatorLayout);
+                    Snackbar.make(contextView, "Group deleted successful",Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        };
+        ItemTouchHelper itemTouchhelper2 = new ItemTouchHelper(swipeToDeleteCallbackRight);
+        itemTouchhelper2.attachToRecyclerView(recyclerView);
     }
 
     //read data about group from firebase
@@ -146,7 +174,7 @@ public class ManageGroupActivity extends AppCompatActivity {
     //Configuration recycler view
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        groupListAdapter = new GroupListAdapter(this, groupArray);
+        groupListAdapter = new GroupListAdapter(this, groupArray,null,3);
         recyclerView.setAdapter(groupListAdapter);
     }
 

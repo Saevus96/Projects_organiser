@@ -3,6 +3,8 @@ package pl.kpchl.registrationproject.fragments.projectfragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +23,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.fragments.BaseFragment;
+import pl.kpchl.registrationproject.fragments.dialogfragments.EditDetailsDialog;
 import pl.kpchl.registrationproject.models.ProjectClass;
 import pl.kpchl.registrationproject.models.UserClass;
 import pl.kpchl.registrationproject.underactivities.ProjectManagmentActivity;
 
-public class ProjectInfoFragment extends BaseFragment {
+public class ProjectInfoFragment extends BaseFragment implements View.OnClickListener {
     private TextView projectName, projectCategory, projectCustomers, projectDescription, projectOrganisation;
     private TextView adminName, adminLastName, adminPhone, adminEmail;
     private ImageView adminImage;
@@ -39,6 +44,7 @@ public class ProjectInfoFragment extends BaseFragment {
     ProjectClass projectClass;
     private int counter = 0;
     private String adminId;
+    private ArrayList<String> sendToDialog = new ArrayList<>();
 
     @Nullable
     @Override
@@ -166,6 +172,12 @@ public class ProjectInfoFragment extends BaseFragment {
         adminEmail = v.findViewById(R.id.adminEmail);
         adminImage = v.findViewById(R.id.adminImage);
 
+        projectName.setOnClickListener(this);
+        projectCategory.setOnClickListener(this);
+        projectDescription.setOnClickListener(this);
+        projectCustomers.setOnClickListener(this);
+        projectOrganisation.setOnClickListener(this);
+
     }
 
     //get logged user
@@ -173,5 +185,50 @@ public class ProjectInfoFragment extends BaseFragment {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser().getUid();
         return currentUser;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.projectName:
+                sendToDialog.add(0, "projectName");
+                sendToDialog.add(1, projectName.getText().toString());
+                showDialog(sendToDialog);
+                break;
+            case R.id.projectCategory:
+                sendToDialog.add(0, "projectCategory");
+                showDialog(sendToDialog);
+                break;
+            case R.id.projectDescription:
+                sendToDialog.add(0, "projectDescription");
+                sendToDialog.add(1, projectDescription.getText().toString());
+                showDialog(sendToDialog);
+                break;
+            case R.id.projectCustomers:
+                sendToDialog.add(0, "projectCustomers");
+                sendToDialog.add(1, projectCustomers.getText().toString());
+                showDialog(sendToDialog);
+                break;
+            case R.id.projectOrganisation:
+                sendToDialog.add(0, "projectOrganisation");
+                sendToDialog.add(1, projectOrganisation.getText().toString());
+                showDialog(sendToDialog);
+                break;
+        }
+    }
+
+    public void showDialog(ArrayList<String> detailType) {
+
+        EditDetailsDialog editDetailsDialog = new EditDetailsDialog();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Bundle args = new Bundle();
+
+        args.putStringArrayList("detailType", detailType);
+        args.putString("dataType","projectInfo");
+
+
+        editDetailsDialog.setArguments(args);
+        editDetailsDialog.show(fragmentManager, "Dialog");
+
     }
 }

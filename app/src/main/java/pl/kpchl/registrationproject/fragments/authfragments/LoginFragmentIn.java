@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,8 +73,8 @@ public class LoginFragmentIn extends BaseFragment implements View.OnClickListene
                         if (task.isSuccessful()) {
                             updateUI();
                         } else {
-                            Toast.makeText(getActivity(), "BAD LOGIN OR PASSWORD"
-                                    , Toast.LENGTH_SHORT).show();
+                            createToast("Bad login or password",R.drawable.ic_alert);
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -90,5 +93,22 @@ public class LoginFragmentIn extends BaseFragment implements View.OnClickListene
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(300, 300);
         params.addRule(RelativeLayout.CENTER_IN_PARENT);
         layout.addView(progressBar, params);
+    }
+    //create custom toast
+    public void createToast(String text, int image) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        ImageView toastImage = layout.findViewById(R.id.toastImage);
+        toastImage.setImageResource(image);
+
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(text);
+
+        Toast toast = new Toast(getActivity());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

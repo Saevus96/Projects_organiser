@@ -73,10 +73,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     }
 
     //delete information bar
-    private void deleteInfoBar(){
-        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN );
+    private void deleteInfoBar() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
     private void countProjects() {
         mDatabase.child("projects").addChildEventListener(new ChildEventListener() {
             @Override
@@ -243,7 +244,9 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         } else {
             progressBar();
             String id = mDatabase.push().getKey();
-            mDatabase.child("projects").child(id).setValue(new ProjectClass(name, "Category" + spinnerActivePosition, description, getUser(), organisation, customers));
+            mDatabase.child("projects").child(id).setValue(new ProjectClass(name,
+                    "Category" + spinnerActivePosition,
+                    description, getUser(), organisation, customers));
             finish();
         }
     }
@@ -268,6 +271,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
                 break;
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

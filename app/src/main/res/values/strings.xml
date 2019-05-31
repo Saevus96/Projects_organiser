@@ -63,4 +63,14 @@
     <string name="task_group_s">Task group</string>
     <string name="task_date_start_sem">Task date start:</string>
     <string name="task_date_end_sem">Task date end:</string>
+    <string name="project_tasks">PROJECT TASKS</string>
+    <string name="project_groups">PROJECT GROUPS</string>
+    <string name="project_informations">PROJECT INFORMATIONS</string>
+    <string name="project_details">PROJECT DETAILS</string>
+    <string name="join">JOIN</string>
+    <string name="join_to_group">Join to group</string>
+    <string name="user_details">User details</string>
+    <string name="group_details">Group details</string>
+    <string name="group_name">Group name:</string>
+    <string name="group_speciality">Group Speciality:</string>
 </resources>

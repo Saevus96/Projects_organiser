@@ -55,6 +55,7 @@ public class FillDetailsActivity extends AppCompatActivity implements ViewTreeOb
     private final int PICK_FILE_REQUEST = 72;
     private DatabaseReference mDatabase;
     private String firstName, lastName, age, education, experience, organisation, interests, email, phone;
+    private ImageView attachedFile;
 
 
     @Override
@@ -158,6 +159,7 @@ public class FillDetailsActivity extends AppCompatActivity implements ViewTreeOb
         addCV.setOnClickListener(this);
         save.setOnClickListener(this);
         personImage = findViewById(R.id.personImage);
+        attachedFile = findViewById(R.id.attachedFile);
     }
 
 
@@ -269,6 +271,7 @@ public class FillDetailsActivity extends AppCompatActivity implements ViewTreeOb
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             createToast("CV file successfully uploaded", R.drawable.ic_alert);
+                            attachedFile.setImageResource(R.drawable.ic_accepted);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

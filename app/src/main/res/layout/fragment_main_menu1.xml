@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -80,6 +79,17 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="5dp">
 
+                    <TextView
+                        android:id="@+id/requestTx"
+                        android:layout_width="50dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="end"
+                        android:background="@drawable/circle"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -110,8 +120,8 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:textAlignment="center"
                             android:text="@string/manage_your_groups"
+                            android:textAlignment="center"
                             android:textColor="#FF3D00"
                             android:textSize="16sp" />
                     </LinearLayout>

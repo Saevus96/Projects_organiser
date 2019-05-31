@@ -1,6 +1,5 @@
 package pl.kpchl.registrationproject.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +27,7 @@ import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.fragments.dialogfragments.ProjectInfoDialog;
 import pl.kpchl.registrationproject.models.ProjectClass;
 import pl.kpchl.registrationproject.underactivities.ProjectManagmentActivity;
+import pl.kpchl.registrationproject.useractivities.ProjectInformations;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ProjectListViewHolder> {
 
@@ -39,7 +38,7 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     private DatabaseReference mDatabase;
     private ArrayList<String> mProjectId;
 
-    public ProjectListAdapter(Context context, ArrayList<ProjectClass> projectList,ArrayList<String> projectId, int projectPage) {
+    public ProjectListAdapter(Context context, ArrayList<ProjectClass> projectList, ArrayList<String> projectId, int projectPage) {
         mContext = context;
         mProjectList = projectList;
         mProjectPage = projectPage;
@@ -60,7 +59,6 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
             projectOrganisation = itemView.findViewById(R.id.projectOrganisation);
             projectCategory = itemView.findViewById(R.id.projectCategory);
             projectInfo = itemView.findViewById(R.id.informationImage);
-
 
         }
     }
@@ -113,17 +111,21 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         projectListViewHolder.projectCategory.setText(object.getProjectCategory());
         if (mProjectPage == 2) {
             projectListViewHolder.projectInfo.setVisibility(View.INVISIBLE);
-            projectListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(mContext,ProjectManagmentActivity.class);
+        }
+        projectListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mProjectPage == 2){
+                    Intent intent = new Intent(mContext, ProjectManagmentActivity.class);
                     intent.putExtra("projectId", mProjectId.get(i));
                     mContext.startActivity(intent);
-                    //Toast.makeText(mContext, mProjectId.get(i), Toast.LENGTH_SHORT).show();
+                }else if(mProjectPage == 1){
+                    Intent intent = new Intent(mContext, ProjectInformations.class);
+                    intent.putExtra("projectId", mProjectId.get(i));
+                    mContext.startActivity(intent);
                 }
-            });
-        }
+            }
+        });
 
         if (i % 2 != 0) {
             projectListViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -131,7 +133,6 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         } else {
             projectListViewHolder.itemView.setBackgroundColor(Color.parseColor("#CCCCCC"));
         }
-
 
 
         projectListViewHolder.projectInfo.setOnClickListener(new View.OnClickListener() {

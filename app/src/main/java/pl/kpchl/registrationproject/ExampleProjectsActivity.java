@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import pl.kpchl.registrationproject.adapters.ProjectListAdapter;
 import pl.kpchl.registrationproject.models.ProjectClass;
@@ -28,11 +27,13 @@ import pl.kpchl.registrationproject.models.ProjectClass;
 public class ExampleProjectsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<ProjectClass> projectArray;
+    private ArrayList<String> projectId = new ArrayList<>();
     private ProjectListAdapter projectListAdapter;
     private Toolbar appBar;
     private DatabaseReference mDatabase;
     private EditText search;
     private String category;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,6 @@ public class ExampleProjectsActivity extends AppCompatActivity {
         setupDatabase();
         readDataFromDatabase();
         search();
-
-
     }
 
     //delete information bar
@@ -70,10 +69,12 @@ public class ExampleProjectsActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     projectArray.clear();
+                    projectId.clear();
                     readSearchingDataFromDatabase(s.toString());
                     Toast.makeText(ExampleProjectsActivity.this, category, Toast.LENGTH_SHORT).show();
                 } else {
                     projectArray.clear();
+                    projectId.clear();
                     readDataFromDatabase();
                 }
             }
@@ -86,37 +87,6 @@ public class ExampleProjectsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    private void readCategories(final String searchString) {
-        mDatabase.child("categories").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if (dataSnapshot.getValue(String.class).toLowerCase().contains(searchString.toLowerCase())) {
-                    //String category = dataSnapshot.getValue(String.class);
-                    category = dataSnapshot.getKey().toString();
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void readSearchingDataFromDatabase(final String searchString) {
         mDatabase.child("projects").addChildEventListener(new ChildEventListener() {
@@ -124,11 +94,13 @@ public class ExampleProjectsActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.child("projectName").getValue(String.class).toLowerCase().contains(searchString.toLowerCase())) {
                     projectArray.add(dataSnapshot.getValue(ProjectClass.class));
-
+                    projectId.add(dataSnapshot.getKey());
                 } else if (dataSnapshot.child("projectOrganisation").getValue(String.class).toLowerCase().contains(searchString.toLowerCase())) {
                     projectArray.add(dataSnapshot.getValue(ProjectClass.class));
+                    projectId.add(dataSnapshot.getKey());
                 } else if (dataSnapshot.child("projectCategory").getValue(String.class).equals(category)) {
                     projectArray.add(dataSnapshot.getValue(ProjectClass.class));
+                    projectId.add(dataSnapshot.getKey());
                 }
                 setupRecyclerView();
             }
@@ -161,14 +133,14 @@ public class ExampleProjectsActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 projectArray.add(dataSnapshot.getValue(ProjectClass.class));
-                Collections.shuffle(projectArray);
+                projectId.add(dataSnapshot.getKey());
                 setupRecyclerView();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 projectArray.add(dataSnapshot.getValue(ProjectClass.class));
-                Collections.shuffle(projectArray);
+                projectId.add(dataSnapshot.getKey());
                 setupRecyclerView();
             }
 
@@ -202,8 +174,9 @@ public class ExampleProjectsActivity extends AppCompatActivity {
     //Configuration recycler view
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        projectListAdapter = new ProjectListAdapter(this, projectArray,null, 1);
+        projectListAdapter = new ProjectListAdapter(this, projectArray, projectId, 1);
         recyclerView.setAdapter(projectListAdapter);
+
     }
 
     //setup components

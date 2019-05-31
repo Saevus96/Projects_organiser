@@ -203,7 +203,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="40dp"
-                android:src="@drawable/ic_file" />
+                android:src="@drawable/ic_file"
+                android:id="@+id/attachedFile"/>
 
             <Button
                 android:layout_width="match_parent"

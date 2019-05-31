@@ -239,6 +239,7 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
         Bundle args = new Bundle();
 
         args.putStringArrayList("detailType", detailType);
+        args.putString("dataType","userInfo");
         editDetailsDialog.setArguments(args);
         editDetailsDialog.show(fragmentManager, "Dialog");
 

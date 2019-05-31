@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".underactivities.ProjectManagmentActivity"></activity>
+        <activity android:name=".useractivities.ProjectInformations"
+            android:parentActivityName=".ExampleProjectsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".underactivities.ProjectManagmentActivity"
+            android:parentActivityName=".useractivities.ManageProjectsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".useractivities.CheckYourDetailsActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -29,8 +36,8 @@
         <activity
             android:name=".useractivities.CreateGroupActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainMenuActivity"/>
+            android:parentActivityName=".MainMenuActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".useractivities.ManageProjectsActivity"
             android:configChanges="keyboardHidden|orientation"

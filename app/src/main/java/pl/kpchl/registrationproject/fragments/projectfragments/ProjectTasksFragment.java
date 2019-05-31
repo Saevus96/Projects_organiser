@@ -27,6 +27,7 @@ import java.util.List;
 
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallback;
+import pl.kpchl.registrationproject.adapters.SwipeToDeleteCallbackRight;
 import pl.kpchl.registrationproject.adapters.TaskListAdapter;
 import pl.kpchl.registrationproject.fragments.BaseFragment;
 import pl.kpchl.registrationproject.fragments.dialogfragments.NewTaskDialog;
@@ -81,6 +82,21 @@ public class ProjectTasksFragment extends BaseFragment implements View.OnClickLi
         };
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(taskRecyclerView);
+
+        SwipeToDeleteCallbackRight swipeToDeleteCallbackRight = new SwipeToDeleteCallbackRight(getActivity()) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+                final int position = viewHolder.getAdapterPosition();
+                taskListAdapter.removeItem(position);
+                taskListAdapter.notifyDataSetChanged();
+                mDatabase.child("projects").child(ProjectManagmentActivity.projectId)
+                        .child("tasks").child(tasksId.get(position)).removeValue();
+                tasksId.remove(position);
+            }
+        };
+        ItemTouchHelper itemTouchhelper2 = new ItemTouchHelper(swipeToDeleteCallbackRight);
+        itemTouchhelper2.attachToRecyclerView(taskRecyclerView);
     }
 
     private void checkGroups() {
