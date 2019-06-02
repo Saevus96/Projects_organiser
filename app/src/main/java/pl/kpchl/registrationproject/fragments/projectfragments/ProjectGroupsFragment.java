@@ -136,7 +136,7 @@ public class ProjectGroupsFragment extends BaseFragment implements View.OnClickL
 
     private void setAdapter() {
         setupRecyclerView();
-        groupListAdapter = new GroupListAdapter(getContext(), groups,null, 1);
+        groupListAdapter = new GroupListAdapter(getContext(), groups,groupsId, 1);
 
     }
 

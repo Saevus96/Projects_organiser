@@ -116,8 +116,8 @@ public class ManageGroupActivity extends AppCompatActivity {
                 if (groupAdmin.equals(getUser())) {
                     groupArray.add(dataSnapshot.getValue(GroupClass.class));
                     //Collections.shuffle(projectArray);
-                    setupRecyclerView();
                     groupId.add(dataSnapshot.getKey());
+                    setupRecyclerView();
                 }
             }
 
@@ -174,7 +174,7 @@ public class ManageGroupActivity extends AppCompatActivity {
     //Configuration recycler view
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        groupListAdapter = new GroupListAdapter(this, groupArray,null,3);
+        groupListAdapter = new GroupListAdapter(this, groupArray,groupId,3);
         recyclerView.setAdapter(groupListAdapter);
     }
 

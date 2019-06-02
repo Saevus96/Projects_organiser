@@ -1,12 +1,11 @@
 package pl.kpchl.registrationproject.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +30,8 @@ import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.fragments.dialogfragments.JoinToGroupDialog;
 import pl.kpchl.registrationproject.fragments.projectfragments.ProjectGroupInfoFragment;
 import pl.kpchl.registrationproject.models.GroupClass;
+import pl.kpchl.registrationproject.underactivities.GroupManagmentActivity;
+import pl.kpchl.registrationproject.underactivities.YourGroupManagmentActivity;
 
 
 public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.GroupListViewHolder> {
@@ -57,7 +59,13 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
     @NonNull
     @Override
     public GroupListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.single_group_view, viewGroup, false);
+        View view;
+        if (mGroupPage == 3 || mGroupPage == 1) {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.single_group1_view, viewGroup, false);
+        } else {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.single_group_view, viewGroup, false);
+        }
+
 
         return new GroupListViewHolder(view);
     }
@@ -75,16 +83,17 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
         }
 
 
-        if (mGroupPage == 1 || mGroupPage == 3) {
-            groupListViewHolder.buttonJoin.setVisibility(View.GONE);
-
-        } else {
+        if (mGroupPage == 2) {
+            int checker = 0;
             groupListViewHolder.buttonJoin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    showDialog(mGroupsId.get(i));
-
+                    if (ProjectGroupInfoFragment.checker == 1) {
+                        showDialog(mGroupsId.get(i));
+                    } else {
+                        Toast.makeText(mContext, "Fill your details to join", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             mDatabase.child("teams").child(mGroupsId.get(i)).child("requests").addChildEventListener(new ChildEventListener() {
@@ -92,7 +101,6 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if (userId.equals(dataSnapshot.child("userId").getValue(String.class))) {
                         groupListViewHolder.buttonJoin.setVisibility(View.GONE);
-
                     }
                 }
 
@@ -131,6 +139,72 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
 
                 }
             });
+        } else if (mGroupPage == 3 || mGroupPage == 1) {
+            groupListViewHolder.buttonJoin.setVisibility(View.GONE);
+            mDatabase.child("teams").child(mGroupsId.get(i)).child("requests").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    if (dataSnapshot.hasChild("requestDate")) {
+                        groupListViewHolder.buttonJoin.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    if (dataSnapshot.hasChild("requestDate")) {
+                        groupListViewHolder.buttonJoin.setVisibility(View.VISIBLE);
+                    } else {
+                        groupListViewHolder.buttonJoin.setVisibility(View.GONE);
+                    }
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild("requestDate")) {
+                        groupListViewHolder.buttonJoin.setVisibility(View.VISIBLE);
+                    } else {
+                        groupListViewHolder.buttonJoin.setVisibility(View.GONE);
+                    }
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    if (dataSnapshot.hasChild("requestDate")) {
+                        groupListViewHolder.buttonJoin.setVisibility(View.VISIBLE);
+                    } else {
+                        groupListViewHolder.buttonJoin.setVisibility(View.GONE);
+                    }
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            groupListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, GroupManagmentActivity.class);
+                    intent.putExtra("groupId", mGroupsId.get(i));
+                    mContext.startActivity(intent);
+                }
+            });
+        } else if (mGroupPage == 4) {
+            groupListViewHolder.buttonJoin.setVisibility(View.GONE);
+            groupListViewHolder.groupName.setText(object.getGroupName());
+            groupListViewHolder.groupSpeciality.setText(object.getGroupSpeciality());
+
+            groupListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, YourGroupManagmentActivity.class);
+                    intent.putExtra("groupId", mGroupsId.get(i));
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
     }
@@ -167,8 +241,6 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.Grou
         args.putString("groupObject", groupId);
         joinToGroupDialog.setArguments(args);
         joinToGroupDialog.show(fragmentManager, "Dialog");
-
-
     }
 
 

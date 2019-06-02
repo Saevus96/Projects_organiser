@@ -75,7 +75,6 @@ public class ProjectManagmentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 projectName = dataSnapshot.child("projectName").getValue(String.class);
-                // Toast.makeText(ProjectManagmentActivity.this, projectName, Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle(projectName);
             }
 

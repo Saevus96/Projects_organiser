@@ -62,7 +62,7 @@ public class ProjectTasksFragment extends BaseFragment implements View.OnClickLi
 
     private void setupRecyclerView() {
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        taskListAdapter = new TaskListAdapter(getActivity(), tasks, tasksId);
+        taskListAdapter = new TaskListAdapter(getActivity(), tasks, tasksId,null,0);
         taskRecyclerView.setAdapter(taskListAdapter);
         taskListAdapter.notifyDataSetChanged();
     }

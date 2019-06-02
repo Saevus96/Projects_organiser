@@ -77,7 +77,7 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
         if (!checkDetails) {
             View view = getActivity().findViewById(R.id.mainMenuRelative);
             Snackbar.make(view, "You did not fill your details",
-                    Snackbar.LENGTH_INDEFINITE).setAction("Please fill your details", new View.OnClickListener() {
+                    Snackbar.LENGTH_INDEFINITE).setAction("Fill now", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), FillDetailsActivity.class));
@@ -90,8 +90,12 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
         mDatabase.child("users").child(getUser()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
                     checkDetails = true;
+                } else {
+
+                    checkDetails = false;
                 }
                 startSnackBarDetails();
             }
@@ -354,4 +358,9 @@ public class MainMenu1Fragment extends BaseFragment implements View.OnClickListe
         toast.show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkAdminDetails();
+    }
 }

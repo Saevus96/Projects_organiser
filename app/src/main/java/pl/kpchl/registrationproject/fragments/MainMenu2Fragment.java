@@ -1,7 +1,6 @@
 package pl.kpchl.registrationproject.fragments;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import pl.kpchl.registrationproject.MainActivity;
 import pl.kpchl.registrationproject.R;
+import pl.kpchl.registrationproject.useractivities.CheckYourApplicationsActivity;
 import pl.kpchl.registrationproject.useractivities.CheckYourDetailsActivity;
+import pl.kpchl.registrationproject.useractivities.CheckYourGroupsActivity;
 import pl.kpchl.registrationproject.useractivities.FillDetailsActivity;
 
 public class MainMenu2Fragment extends BaseFragment implements View.OnClickListener {
@@ -121,6 +122,8 @@ public class MainMenu2Fragment extends BaseFragment implements View.OnClickListe
         checkYourDetails.setOnClickListener(this);
         signOutButton.setOnClickListener(this);
         fillYourDetails.setOnClickListener(this);
+        checkYourApplications.setOnClickListener(this);
+        checkYourGroups.setOnClickListener(this);
     }
 
     //get logged user
@@ -142,8 +145,12 @@ public class MainMenu2Fragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.checkYourGroups:
+                startActivity(new Intent(getActivity(), CheckYourGroupsActivity.class));
+                getActivity().recreate();
                 break;
             case R.id.checkYourApplications:
+                startActivity(new Intent(getActivity(), CheckYourApplicationsActivity.class));
+                getActivity().recreate();
                 break;
             case R.id.fillInYourDetails:
                 if (userDetailsCounter < 1) {
@@ -154,7 +161,6 @@ public class MainMenu2Fragment extends BaseFragment implements View.OnClickListe
                 }
                 break;
             case R.id.checkYourDetails:
-
                 if (userDetailsCounter > 0) {
                     startActivity(new Intent(getActivity(), CheckYourDetailsActivity.class));
                     getActivity().recreate();

@@ -175,8 +175,9 @@ public class FillDetailsActivity extends AppCompatActivity implements ViewTreeOb
     //set activity type for files
     private void chooseFile() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-        intent.setType("*/*");
+        intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(intent, "Select FILE"), PICK_FILE_REQUEST);
     }
 
@@ -199,7 +200,7 @@ public class FillDetailsActivity extends AppCompatActivity implements ViewTreeOb
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoPath);
                 Glide.with(this)
-                        .load(storageReference.child("user_images").child(getUser()))
+                        .load(bitmap)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .into(personImage);

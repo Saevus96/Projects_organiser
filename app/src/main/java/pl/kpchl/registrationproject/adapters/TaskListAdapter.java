@@ -30,14 +30,18 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     private Context mContext;
     private List<TaskClass> taskList;
     private List<String> taskId;
+    private List<String> mProjectId;
     private ArrayList<String> sendToDialog = new ArrayList<>();
     private String groupNameFromBase;
     private DatabaseReference mDatabase;
+    private int mPage;
 
-    public TaskListAdapter(Context mContext, List<TaskClass> taskList, List<String> taskId) {
+    public TaskListAdapter(Context mContext, List<TaskClass> taskList, List<String> taskId, ArrayList<String> projectId, int page) {
         this.mContext = mContext;
         this.taskList = taskList;
         this.taskId = taskId;
+        this.mProjectId = projectId;
+        this.mPage = page;
     }
 
     @NonNull
@@ -85,6 +89,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                 showDialog();
             }
         });
+        if(mPage == 2){
+            taskListViewHolder.taskGroupItem.setText("Project name:");
+            mDatabase.child("projects").child(mProjectId.get(i)).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    taskListViewHolder.groupName.setText(dataSnapshot.child("projectName").getValue(String.class));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
     }
 
     @Override
@@ -97,6 +116,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         private TextView taskStart;
         private TextView taskEnd;
         private TextView groupName;
+        private TextView taskGroupItem;
 
         public TaskListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,7 +124,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             taskStart = itemView.findViewById(R.id.taskDateStart);
             taskEnd = itemView.findViewById(R.id.taskDateEnd);
             groupName = itemView.findViewById(R.id.groupName);
-
+            taskGroupItem = itemView.findViewById(R.id.taskGroupItem);
         }
     }
 

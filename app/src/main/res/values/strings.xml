@@ -73,4 +73,6 @@
     <string name="group_details">Group details</string>
     <string name="group_name">Group name:</string>
     <string name="group_speciality">Group Speciality:</string>
+    <string name="group_users">Group users</string>
+    <string name="group_requests">Group Requests</string>
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background_app"
     android:orientation="vertical"
     tools:context=".useractivities.FillDetailsActivity"
     >
@@ -26,7 +25,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/scrollView">
+        android:id="@+id/scrollView"
+        android:background="@drawable/background_app">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

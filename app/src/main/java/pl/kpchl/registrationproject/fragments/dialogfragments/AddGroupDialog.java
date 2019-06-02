@@ -202,7 +202,7 @@ public class AddGroupDialog extends AppCompatDialogFragment implements View.OnCl
                 addToDataBase();
                 break;
             case R.id.buttonCancel:
-                getDialog().dismiss();
+                getDialog().cancel();
                 break;
         }
     }
@@ -223,5 +223,11 @@ public class AddGroupDialog extends AppCompatDialogFragment implements View.OnCl
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getDialog().dismiss();
     }
 }

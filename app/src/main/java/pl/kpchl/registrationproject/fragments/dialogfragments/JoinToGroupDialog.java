@@ -23,6 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.fragments.projectfragments.ProjectGroupInfoFragment;
 import pl.kpchl.registrationproject.models.GroupClass;
@@ -169,6 +172,13 @@ public class JoinToGroupDialog extends AppCompatDialogFragment implements View.O
     private void sendRequest() {
         RequestClass requestClass = new RequestClass();
         requestClass.setUserId(getUser());
+        requestClass.setGroupId(groupId);
+        requestClass.setRequestStatus("waiting");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDateandTime = sdf.format(new Date());
+
+        requestClass.setRequestDate(currentDateandTime);
         String id = mDatabase.push().getKey();
         mDatabase.child("teams")
                 .child(groupId)
@@ -179,7 +189,7 @@ public class JoinToGroupDialog extends AppCompatDialogFragment implements View.O
                 .child(getUser())
                 .child("requests")
                 .child(id)
-                .child("groupId").setValue(groupId);
+                .setValue(requestClass);
 
         Snackbar.make(ProjectGroupInfoFragment.view.findViewById(R.id.relativeLay),
                 "Request sended", Snackbar.LENGTH_LONG).show();

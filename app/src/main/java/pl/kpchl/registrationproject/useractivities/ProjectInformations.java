@@ -1,11 +1,10 @@
 package pl.kpchl.registrationproject.useractivities;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
@@ -19,9 +18,6 @@ import pl.kpchl.registrationproject.R;
 import pl.kpchl.registrationproject.adapters.ViewPagerAdapter;
 import pl.kpchl.registrationproject.fragments.projectfragments.ProjectDetailsFragment;
 import pl.kpchl.registrationproject.fragments.projectfragments.ProjectGroupInfoFragment;
-import pl.kpchl.registrationproject.fragments.projectfragments.ProjectGroupsFragment;
-import pl.kpchl.registrationproject.fragments.projectfragments.ProjectInfoFragment;
-import pl.kpchl.registrationproject.fragments.projectfragments.ProjectTasksFragment;
 
 public class ProjectInformations extends AppCompatActivity {
     private android.support.v7.widget.Toolbar toolbar;
@@ -44,6 +40,7 @@ public class ProjectInformations extends AppCompatActivity {
         tabOrientation();
 
     }
+
     //get project id
     private void setProjectId() {
         projectId = getIntent().getStringExtra("projectId");
@@ -107,7 +104,7 @@ public class ProjectInformations extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);

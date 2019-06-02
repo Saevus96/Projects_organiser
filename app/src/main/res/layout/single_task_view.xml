@@ -85,7 +85,8 @@
             android:layout_height="wrap_content"
             android:text="@string/task_group"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:id="@+id/taskGroupItem"/>
 
         <TextView
             android:id="@+id/groupName"

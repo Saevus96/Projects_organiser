@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -245,20 +246,20 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
 
     }
 
-    //set activity type for image
-    private void chooseImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-    }
-
     //set activity type for files
     private void chooseFile() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select FILE"), PICK_FILE_REQUEST);
+    }
+
+    //set activity type for image
+    private void chooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     //Activity to get data from device storage
@@ -286,9 +287,9 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
             filePath = data.getData();
             uploadFile();
         }
-
     }
 
+    //upload file to firebase storage
     private void uploadFile() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading CV file...");
@@ -301,7 +302,7 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            createToast("CV uploaded successfull", R.drawable.ic_alert);
+                            createToast("CV file successfully uploaded", R.drawable.ic_alert);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -317,16 +318,17 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
         }
+
     }
 
+    //upload image to firebase storage
     private void uploadImage() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading Image...");
+        progressDialog.setTitle("Uploading image file...");
         progressDialog.show();
         if (photoPath != null) {
             progressDialog.show();
@@ -336,9 +338,7 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            //Toast.makeText(CheckYourDetailsActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                            createToast("Image uploaded successfull", R.drawable.ic_alert);
-
+                            createToast("Image successfully uploaded", R.drawable.ic_alert);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -391,5 +391,10 @@ public class CheckYourDetailsActivity extends AppCompatActivity implements View.
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 }

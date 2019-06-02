@@ -10,12 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,9 @@ public class ProjectGroupInfoFragment extends BaseFragment {
     private ArrayList<GroupClass> groups = new ArrayList<>();
     private GroupListAdapter groupListAdapter;
     public static View view;
+    public static int checker = 0;
+    private FirebaseAuth mAuth;
+    private String currentUser;
 
     @Nullable
     @Override
@@ -43,9 +49,30 @@ public class ProjectGroupInfoFragment extends BaseFragment {
         setAdapter();
         setupDatabase();
         readGroupsFromDataBase();
+        checkUserDetails();
         return view;
     }
+    public void checkUserDetails(){
+        mDatabase.child("users").child(getUser()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    checker = 1;
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    //get logged user
+    private String getUser() {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser().getUid();
+        return currentUser;
+    }
     private void addToRecyclerView(final String groupId) {
         mDatabase.child("teams").addChildEventListener(new ChildEventListener() {
             @Override

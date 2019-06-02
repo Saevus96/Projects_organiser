@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_check_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -56,9 +56,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="imageAsset" value="D:\join_icon.png" />
-                                      <entry key="outputName" value="ic_accepted" />
-                                      <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="08ae20" />
+                                      <entry key="outputName" value="ic_add2" />
+                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="themeColor" value="e40005" />
                                     </map>
                                   </option>
                                 </PersistentState>

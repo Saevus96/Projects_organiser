@@ -115,11 +115,11 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         projectListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mProjectPage == 2){
+                if (mProjectPage == 2) {
                     Intent intent = new Intent(mContext, ProjectManagmentActivity.class);
                     intent.putExtra("projectId", mProjectId.get(i));
                     mContext.startActivity(intent);
-                }else if(mProjectPage == 1){
+                } else if (mProjectPage == 1) {
                     Intent intent = new Intent(mContext, ProjectInformations.class);
                     intent.putExtra("projectId", mProjectId.get(i));
                     mContext.startActivity(intent);
@@ -129,7 +129,6 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
         if (i % 2 != 0) {
             projectListViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            // projectListViewHolder.projectName.setTextColor();
         } else {
             projectListViewHolder.itemView.setBackgroundColor(Color.parseColor("#CCCCCC"));
         }
