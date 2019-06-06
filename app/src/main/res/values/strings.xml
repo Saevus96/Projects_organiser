@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RegistrationProject</string>
+    <string name="app_name">Registration Project</string>
     <string name="terms"> <u>Terms</u>.</string>
     <string name="app_description">Create projects, create project groups,\n
     join existing groups, gain experience,\n
