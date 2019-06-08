@@ -2,7 +2,7 @@
 
 <p>This is code for the application "Registraition Project".</p>
 
-<h1>About application</h1>
+<h2>About application</h2>
 
 <p>Aplication allows to add your own project with project groups,
 managing them and create a task for these groups.
@@ -11,11 +11,9 @@ If you don't need it, you can be a normal user who can join to other project gro
 <p> "Registration Project" app uses Firebase Realtime database, Firebase authentication(for create new users, and manage them) 
 and storage database(to store CV and photo files sended from the app).
 
-<h1>Setup</h1>
-Download apk from this link : https://www33.zippyshare.com/v/HXIVhgnl/file.html
-<br><br>
+<h2>Setup</h2>
 
-<h2>Windows</h2>
+<h3>Windows</h3>
 <p>If you download this on your PC:</p>
 <ol>
 	<li>Hook up your mobile device to PC.</li>
@@ -25,7 +23,7 @@ Download apk from this link : https://www33.zippyshare.com/v/HXIVhgnl/file.html
 	<li>Enjoy application :)</li>
 </ol>
 
-<h2>Android device:</h2>
+<h3>Android device:</h3>
 <p>If you download apk on your mobile device:</p>
 <ol>
 	<li>In your device find apk file and click on it.</li>
@@ -33,5 +31,6 @@ Download apk from this link : https://www33.zippyshare.com/v/HXIVhgnl/file.html
 	<li>Enjoy application :)</li>
 </ol>
 
-<h1>Run application</h1>
+<h2>Run application</h2>
+<p>Click on "Registration project" app icon - It's very easy ! :)</p>
 <img src="https://i.ibb.co/BLFqfjM/ezgif-com-video-to-gif7a9007b6427510b2.gif"/>
