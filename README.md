@@ -38,4 +38,4 @@ and storage database(to store CV and photo files sended from the app).
 
 <h2>Look at existing projects</h2>
 
-<img src="https://ibb.co/qrtwHBq"/>
+<img src="https://i.ibb.co/87WVyMv/2019-06-08-02-40-12.gif"/>
