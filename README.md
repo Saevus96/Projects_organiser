@@ -12,6 +12,7 @@ If you don't need it, you can be a normal user who can join to other project gro
 and storage database(to store CV and photo files sended from the app).
 
 <h2>Setup</h2>
+<p>Download apk from this link : https://www33.zippyshare.com/v/HXIVhgnl/file.html</p>
 
 <h3>Windows</h3>
 <p>If you download this on your PC:</p>
@@ -34,3 +35,7 @@ and storage database(to store CV and photo files sended from the app).
 <h2>Run application</h2>
 <p>Click on "Registration project" app icon - It's very easy ! :)</p>
 <img src="https://i.ibb.co/BLFqfjM/ezgif-com-video-to-gif7a9007b6427510b2.gif"/>
+
+<h2>Look at existing projects</h2>
+
+<img src="https://ibb.co/qrtwHBq"/>
