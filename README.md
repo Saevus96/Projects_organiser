@@ -32,20 +32,14 @@ and storage database(to store CV and photo files sended from the app).
 	<li>Enjoy application :)</li>
 </ol>
 
+<h3>Device Requirements<h3>
+<ul>
+	<li>Android system from 4.1(JellyBean) to 9.0(Pie)</li>
+	<li>RAM 800MB</li>
+	<li>Internet connection</li>
+</ul>
 <h2>Run application</h2>
 <p>Click on "Registration project" app icon - It's very easy ! :)</p>
 <img src="https://i.ibb.co/BLFqfjM/ezgif-com-video-to-gif7a9007b6427510b2.gif"/>
 
-<h2>Look at existing projects</h2>
-<p>If you want look on existing projects in our app click on 
-floating inscription "Click here to show existing projects".</p>
-
-<p>In this activity you can check informations about projects and search them by name or organisation.
-If you want more options for this project "Sign up" or "Sign in".</p>
-<img src="https://i.ibb.co/87WVyMv/2019-06-08-02-40-12.gif"/>
-
-<h2>How can you "Sign up" or "Sign in"</h2>
-<p> It's very simple
-Change page like on the video below and choose the option that interests you</p>
-<img src="https://i.ibb.co/T28mjzy/gif3.gif"/>
 
