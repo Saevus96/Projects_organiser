@@ -1,6 +1,7 @@
 <h1>Registration Project - For Group Project</h1>
 
 <p>This is the code for the paper</p>
+<p>https://docs.google.com/document/d/1O3zol8jsJSGMfbDTp9deoLYF8FNPZGismE7BOAlYQUA/edit?fbclid=IwAR2pLlbSPHhUDKTcMR-Sa3R5oDZfCjTpFLUNnnrORw1F1PNvlNUOJgFrhbU</p>
 
 <h2>About application</h2>
 
